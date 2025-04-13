@@ -3,7 +3,8 @@ from sympy import symbols, factor
 from sympy.parsing.sympy_parser import parse_expr
 from flask_cors import CORS
 import os
-
+from sympy import symbols, factor
+from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor
 app = Flask(__name__)
 CORS(app)  # Allow frontend calls
 
