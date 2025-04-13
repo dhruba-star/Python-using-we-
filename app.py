@@ -2,11 +2,16 @@ from flask import Flask, request, jsonify
 from sympy import symbols, factor
 from sympy.parsing.sympy_parser import parse_expr
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)  # Allow frontend calls
 
-x = symbols('x')  # You can add more symbols as needed
+x = symbols('x')  # You can add y, z if needed
+
+@app.route('/')
+def home():
+    return "Algebra Factorizer API is live!"
 
 @app.route('/factor', methods=['POST'])
 def factorize():
@@ -24,7 +29,5 @@ def factorize():
         return jsonify({'error': str(e)}), 400
 
 if __name__ == '__main__':
-    import os
-
-port = int(os.environ.get("PORT", 10000))
-app.run(host='0.0.0.0', port=port)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
